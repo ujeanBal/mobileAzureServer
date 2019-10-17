@@ -1,6 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,6 +16,19 @@
     <RootNamespace>MobilebACKEND</RootNamespace>
     <AssemblyName>MobilebACKEND</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -27,10 +46,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
@@ -43,9 +67,30 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Http.Formatting">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
     </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
@@ -81,13 +126,6 @@
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Server.Authentication">
       <HintPath>..\packages\Microsoft.Azure.Mobile.Server.Authentication.2.0.3\lib\net46\Microsoft.Azure.Mobile.Server.Authentication.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.Entity" />
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="Microsoft.Azure.Mobile.Server.Home">
@@ -247,6 +285,7 @@
     <Reference Include="Microsoft.Owin.Hosting">
       <HintPath>..\packages\Microsoft.Owin.Hosting.2.0.2\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />
@@ -255,22 +294,93 @@
   <ItemGroup>
     <Compile Include="App_Start\Startup.MobileApp.cs" />
     <Compile Include="App_Start\Startup.Swagger.cs" />
-    <Compile Include="Controllers\GreenController.cs" />
-    <Compile Include="Controllers\PersonController.cs" />
-    <Compile Include="Controllers\SecuredController.cs" />
-    <Compile Include="Controllers\CustomController.cs" />
-    <Compile Include="Controllers\BrownOnlineController.cs" />
-    <Compile Include="DataObjects\Green.cs" />
-    <Compile Include="DataObjects\Person.cs" />
-    <Compile Include="DataObjects\BrownOnline.cs" />
-    <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\PersonEntity.cs" />
-    <Compile Include="Models\GreenContext.cs" />
-    <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\BrownOnlineDomainManager.cs" />
-    <Compile Include="Models\BrownContext.cs" />
+    <Compile Include="Controllers\FoodController.cs" />
+    <Compile Include="DAL\FoodContext.cs" />
+    <Compile Include="DAL\FoodDomainManager.cs" />
+    <Compile Include="Migrations\201910161320077_changeToStruct.cs" />
+    <Compile Include="Migrations\201910161320077_changeToStruct.Designer.cs">
+      <DependentUpon>201910161320077_changeToStruct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910161330462_ComplexType.cs" />
+    <Compile Include="Migrations\201910161330462_ComplexType.Designer.cs">
+      <DependentUpon>201910161330462_ComplexType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910161411001_addId.cs" />
+    <Compile Include="Migrations\201910161411001_addId.Designer.cs">
+      <DependentUpon>201910161411001_addId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910170739024_addRelationShipsAgain.cs" />
+    <Compile Include="Migrations\201910170739024_addRelationShipsAgain.Designer.cs">
+      <DependentUpon>201910170739024_addRelationShipsAgain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910170857143_seperateTables.cs" />
+    <Compile Include="Migrations\201910170857143_seperateTables.Designer.cs">
+      <DependentUpon>201910170857143_seperateTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910170916262_tostring.cs" />
+    <Compile Include="Migrations\201910170916262_tostring.Designer.cs">
+      <DependentUpon>201910170916262_tostring.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910170934537_removeInt.cs" />
+    <Compile Include="Migrations\201910170934537_removeInt.Designer.cs">
+      <DependentUpon>201910170934537_removeInt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910171023206_sone.cs" />
+    <Compile Include="Migrations\201910171023206_sone.Designer.cs">
+      <DependentUpon>201910171023206_sone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910171029257_renameTables.cs" />
+    <Compile Include="Migrations\201910171029257_renameTables.Designer.cs">
+      <DependentUpon>201910171029257_renameTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PFC.cs" />
+    <Compile Include="Migrations\201910111142384_Initial.cs" />
+    <Compile Include="Migrations\201910111142384_Initial.Designer.cs">
+      <DependentUpon>201910111142384_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Food.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\FoodMobile.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="FolderProfile.pubxml" />
+    <None Include="FolderProfile1.pubxml" />
+    <None Include="FolderProfile2.pubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201910111142384_Initial.resx">
+      <DependentUpon>201910111142384_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910161320077_changeToStruct.resx">
+      <DependentUpon>201910161320077_changeToStruct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910161330462_ComplexType.resx">
+      <DependentUpon>201910161330462_ComplexType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910161411001_addId.resx">
+      <DependentUpon>201910161411001_addId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910170739024_addRelationShipsAgain.resx">
+      <DependentUpon>201910170739024_addRelationShipsAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910170857143_seperateTables.resx">
+      <DependentUpon>201910170857143_seperateTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910170916262_tostring.resx">
+      <DependentUpon>201910170916262_tostring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910170934537_removeInt.resx">
+      <DependentUpon>201910170934537_removeInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910171023206_sone.resx">
+      <DependentUpon>201910171023206_sone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910171029257_renameTables.resx">
+      <DependentUpon>201910171029257_renameTables.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <MonoDevelop>
@@ -278,6 +388,23 @@
         <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
       </Properties>
     </MonoDevelop>
+    <VisualStudio>
+      <FlavorProperties GUID="{349C5851-65DF-11DA-9384-00065B846F21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56401</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:88</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
   </ProjectExtensions>
-  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
 </Project>
