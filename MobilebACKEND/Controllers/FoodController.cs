@@ -12,7 +12,7 @@ using System.Web.Http.OData;
 namespace MobilebACKEND.Controllers
 {
     [MobileAppController]
-    public class FoodController : TableController<FoodMobile>
+    public class FoodController : TableController<FoodDTO>
     {
         private FoodContext context;
         protected override void Initialize(HttpControllerContext controllerContext)
@@ -22,9 +22,9 @@ namespace MobilebACKEND.Controllers
             DomainManager = new FoodDomainManager(context, Request);
         }
 
-        public IQueryable<FoodMobile> GetFoods()
+        public IQueryable<FoodDTO> GetFoods()
         {
-            IQueryable<FoodMobile> res = null;
+            IQueryable<FoodDTO> res = null;
             try
             {
                 res = DomainManager.Query();
@@ -36,21 +36,21 @@ namespace MobilebACKEND.Controllers
             return res;
         }
 
-        public SingleResult<FoodMobile> GetFood(string id)
+        public SingleResult<FoodDTO> GetFood(string id)
         {
             return Lookup(id);
         }
 
-        public async Task<FoodMobile> PatchFood(string id, Delta<FoodMobile> patch)
+        public async Task<FoodDTO> PatchFood(string id, Delta<FoodDTO> patch)
         {
             //var res = patch.GetEntity();
            // var fieldName = patch.GetDynamicMemberNames();
             return await DomainManager.UpdateAsync(id, patch);
         }
 
-        public async Task<IHttpActionResult> PostFood([FromBody]FoodMobile item)
+        public async Task<IHttpActionResult> PostFood([FromBody]FoodDTO item)
         {
-            FoodMobile current = null;
+            FoodDTO current = null;
             try
             {
                 current = await DomainManager.InsertAsync(item);
@@ -63,7 +63,7 @@ namespace MobilebACKEND.Controllers
             return CreatedAtRoute("Tables", new { id = current.Id }, current);
         }
 
-        public Task<FoodMobile> PostUndeleteFood(string id)
+        public Task<FoodDTO> PostUndeleteFood(string id)
         {
             return UndeleteAsync(id);
         }

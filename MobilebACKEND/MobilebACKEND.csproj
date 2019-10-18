@@ -333,6 +333,14 @@
     <Compile Include="Migrations\201910171029257_renameTables.Designer.cs">
       <DependentUpon>201910171029257_renameTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910171304065_addByteArrField.cs" />
+    <Compile Include="Migrations\201910171304065_addByteArrField.Designer.cs">
+      <DependentUpon>201910171304065_addByteArrField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910171339202_changebyteToString.cs" />
+    <Compile Include="Migrations\201910171339202_changebyteToString.Designer.cs">
+      <DependentUpon>201910171339202_changebyteToString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\PFC.cs" />
     <Compile Include="Migrations\201910111142384_Initial.cs" />
     <Compile Include="Migrations\201910111142384_Initial.Designer.cs">
@@ -341,7 +349,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Food.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModel\FoodMobile.cs" />
+    <Compile Include="DTO\FoodDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FolderProfile.pubxml" />
@@ -378,6 +386,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910171029257_renameTables.resx">
       <DependentUpon>201910171029257_renameTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910171304065_addByteArrField.resx">
+      <DependentUpon>201910171304065_addByteArrField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910171339202_changebyteToString.resx">
+      <DependentUpon>201910171339202_changebyteToString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

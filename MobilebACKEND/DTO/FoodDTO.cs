@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MobilebACKEND.ViewModel
 {
-    public class FoodMobile: EntityData
+    public class FoodDTO: EntityData
     {
         public string Name { get; set; }
         public string Kkal { get; set; }
@@ -14,5 +14,7 @@ namespace MobilebACKEND.ViewModel
         public string Proteins { get; set; }
         public string Fats { get; set; }
         public string Carbohydrates { get; set; }
+
+        public string Image { get; set; }
     }
 }

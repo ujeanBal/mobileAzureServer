@@ -34,9 +34,9 @@ namespace MobilebACKEND.Models
 
         public int Kkal { get; set; }
 
-        public  PFC Description { get; set; }
+        public PFC Description { get; set; }
 
-
+        public string Image { get; set; }
 
         public int Weight { get; set; }
         public Food()

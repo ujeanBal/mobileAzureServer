@@ -16,7 +16,7 @@ using System.Web.Http.OData;
 
 namespace MobilebACKEND.DAL
 {
-    public class FoodDomainManager : MappedEntityDomainManager<FoodMobile, Food>
+    public class FoodDomainManager : MappedEntityDomainManager<FoodDTO, Food>
     {
         private readonly Mapper _mapper;
 
@@ -25,12 +25,12 @@ namespace MobilebACKEND.DAL
             _mapper = new Mapper(Startup.MapperConfiguration);
             Context = context;
         }
-        public override IQueryable<FoodMobile> Query()
+        public override IQueryable<FoodDTO> Query()
         {
-            return this.Context.Set<Food>().ProjectTo<FoodMobile>(Startup.MapperConfiguration);
+            return this.Context.Set<Food>().ProjectTo<FoodDTO>(Startup.MapperConfiguration);
         }
 
-        public async override Task<FoodMobile> InsertAsync(FoodMobile data)
+        public async override Task<FoodDTO> InsertAsync(FoodDTO data)
         {
             if (data == null)
             {
@@ -42,8 +42,8 @@ namespace MobilebACKEND.DAL
                 data.Id = Guid.NewGuid().ToString("N");
             }
 
-            Food model = _mapper.Map<FoodMobile, Food>(data);
-            Context.Set<Food>().Add(model);
+            Food newFood = _mapper.Map<FoodDTO, Food>(data);
+            Context.Set<Food>().Add(newFood);
             try
             {
                 await this.SubmitChangesAsync();
@@ -53,7 +53,7 @@ namespace MobilebACKEND.DAL
                 var er = ex;
             }
 
-            return _mapper.Map<Food, FoodMobile>(model);
+            return _mapper.Map<Food, FoodDTO>(newFood);
         }
 
         public async override Task<bool> DeleteAsync(string id)
@@ -69,29 +69,29 @@ namespace MobilebACKEND.DAL
             return false;
         }
 
-        public override SingleResult<FoodMobile> Lookup(string id)
+        public override SingleResult<FoodDTO> Lookup(string id)
         {
-            FoodMobile existingCustomerDTO = this.Context.Set<Food>().Where(f => f.Id == id)
-                .ProjectTo<FoodMobile>(Startup.MapperConfiguration).FirstOrDefault();
+            FoodDTO existingFoodDTO = this.Context.Set<Food>().Where(f => f.Id == id)
+                .ProjectTo<FoodDTO>(Startup.MapperConfiguration).FirstOrDefault();
 
-            return SingleResult.Create((new List<FoodMobile>() { existingCustomerDTO }).AsQueryable());
+            return SingleResult.Create((new List<FoodDTO>() { existingFoodDTO }).AsQueryable());
         }
 
-        public override async Task<FoodMobile> UpdateAsync(string id, Delta<FoodMobile> patch)
+        public override async Task<FoodDTO> UpdateAsync(string id, Delta<FoodDTO> patch)
         {
-            FoodMobile existingCustomerDTO = null;
-            Food existingCustomer = null;
+            FoodDTO existingFoodDTO = null;
+            Food existingFood = null;
             try
             {
-                existingCustomer = this.Context.Set<Food>().Include(f => f.Description).Where(f => f.Id == id).FirstOrDefault();
-                if (existingCustomer == null)
+                existingFood = this.Context.Set<Food>().Include(f => f.Description).Where(f => f.Id == id).FirstOrDefault();
+                if (existingFood == null)
                 {
                     throw new HttpResponseException(this.Request.CreateNotFoundResponse());
                 }
 
-                existingCustomerDTO = _mapper.Map<Food, FoodMobile>(existingCustomer);
-                patch.Patch(existingCustomerDTO);
-                _mapper.Map(existingCustomerDTO, existingCustomer);
+                existingFoodDTO = _mapper.Map<Food, FoodDTO>(existingFood);
+                patch.Patch(existingFoodDTO);
+                _mapper.Map(existingFoodDTO, existingFood);
 
                 await this.SubmitChangesAsync();
             }
@@ -100,9 +100,9 @@ namespace MobilebACKEND.DAL
                 var rr = ex;
             }
 
-            FoodMobile updatedCustomerDTO = _mapper.Map<Food, FoodMobile>(existingCustomer);
+            FoodDTO updatedFoodDTO = _mapper.Map<Food, FoodDTO>(existingFood);
 
-            return existingCustomerDTO;
+            return updatedFoodDTO;
         }
     }
 }
