@@ -1,8 +1,4 @@
-﻿using System;
-using System.Web.Http;
-using Microsoft.Azure.Mobile.Server.Config;
-using Microsoft.Azure.Mobile.Server.Tables.Config;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartup(typeof(MobileAzureServerMVC.Startup))]

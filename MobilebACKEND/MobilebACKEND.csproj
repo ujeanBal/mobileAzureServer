@@ -21,7 +21,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <TargetFrameworkProfile />
     <Use64BitIISExpress />
     <IISExpressSSLPort />
@@ -341,6 +341,14 @@
     <Compile Include="Migrations\201910171339202_changebyteToString.Designer.cs">
       <DependentUpon>201910171339202_changebyteToString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910210802503_changeInToLong.cs" />
+    <Compile Include="Migrations\201910210802503_changeInToLong.Designer.cs">
+      <DependentUpon>201910210802503_changeInToLong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910210808009_ChangeAllTypesToLong.cs" />
+    <Compile Include="Migrations\201910210808009_ChangeAllTypesToLong.Designer.cs">
+      <DependentUpon>201910210808009_ChangeAllTypesToLong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\PFC.cs" />
     <Compile Include="Migrations\201910111142384_Initial.cs" />
     <Compile Include="Migrations\201910111142384_Initial.Designer.cs">
@@ -393,6 +401,12 @@
     <EmbeddedResource Include="Migrations\201910171339202_changebyteToString.resx">
       <DependentUpon>201910171339202_changebyteToString.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910210802503_changeInToLong.resx">
+      <DependentUpon>201910210802503_changeInToLong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910210808009_ChangeAllTypesToLong.resx">
+      <DependentUpon>201910210808009_ChangeAllTypesToLong.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -409,7 +423,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>56401</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:88</IISUrl>
+          <IISUrl>http://localhost:56401/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

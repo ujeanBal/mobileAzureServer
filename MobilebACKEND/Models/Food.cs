@@ -32,13 +32,13 @@ namespace MobilebACKEND.Models
         public byte[] Version { get; set; }
         public string Name { get; set; }
 
-        public int Kkal { get; set; }
+        public long Kkal { get; set; }
 
         public PFC Description { get; set; }
 
         public string Image { get; set; }
 
-        public int Weight { get; set; }
+        public long Weight { get; set; }
         public Food()
         {
             Description = new PFC();

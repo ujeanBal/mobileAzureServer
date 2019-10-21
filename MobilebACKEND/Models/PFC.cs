@@ -8,11 +8,11 @@ namespace MobilebACKEND.Models
     public class PFC
     {
         public int Id { get; set; }
-        public int Proteins { get; set; }
-        public int Fats { get; set; }
-        public int Carbohydrates { get; set; }
+        public long Proteins { get; set; }
+        public long Fats { get; set; }
+        public long Carbohydrates { get; set; }
 
         [JsonIgnore]
-       public Food Owner { get; set; }
+        public Food Owner { get; set; }
     }
 }

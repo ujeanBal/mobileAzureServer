@@ -6,6 +6,7 @@ using MobilebACKEND.ViewModel;
 using Owin;
 using System;
 using System.Data.Entity.Migrations;
+using System.Data.Entity.SqlServer;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading;
@@ -18,7 +19,7 @@ namespace MobileAzureServerMVC
     {
         public static MapperConfiguration MapperConfiguration;
         public static void ConfigureMobileApp(IAppBuilder app)
-        {       
+        {
             HttpConfiguration config = new HttpConfiguration();
 
             config.MapHttpAttributeRoutes();
@@ -42,12 +43,13 @@ namespace MobileAzureServerMVC
                     .ForPath(dst => dst.Description.Fats, map => map.MapFrom(x => Convert.ToInt32(x.Fats)))
                     .ForPath(dst => dst.Description.Proteins, map => map.MapFrom(x => Convert.ToInt32(x.Proteins)))
                      .ForMember(dst => dst.Name, map => map.MapFrom(x => x.Name))
-                      .ForMember(dst => dst.Kkal, map => map.MapFrom(x => Convert.ToInt32(x.Kkal)))
+                      .ForMember(dst => dst.Kkal, map => map.MapFrom(x => x.Kkal))
                        .ForMember(dst => dst.Weight, map => map.MapFrom(x => Convert.ToInt32(x.Weight)));
                 cfg.CreateMap<Food, FoodDTO>()
                     .ForMember(dst => dst.Carbohydrates, map => map.MapFrom(x => x.Description.Carbohydrates))
                     .ForMember(dst => dst.Fats, map => map.MapFrom(x => x.Description.Fats))
-                    .ForMember(dst => dst.Proteins, map => map.MapFrom(x => x.Description.Proteins));
+                    .ForMember(dst => dst.Proteins, map => map.MapFrom(x => x.Description.Proteins))
+                 .ForMember(dst => dst.Kkal, map => map.MapFrom(x => (x.Kkal)));
             });
 
             app.UseWebApi(config);
@@ -65,7 +67,8 @@ namespace MobileAzureServerMVC
             {
                 var body = await request.Content.ReadAsStringAsync();
             }
-            catch (Exception ex){
+            catch (Exception ex)
+            {
                 var e = ex;
             }
 

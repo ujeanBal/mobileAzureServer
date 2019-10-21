@@ -24,16 +24,7 @@ namespace MobilebACKEND.Controllers
 
         public IQueryable<FoodDTO> GetFoods()
         {
-            IQueryable<FoodDTO> res = null;
-            try
-            {
-                res = DomainManager.Query();
-            }
-            catch (Exception ex)
-            {
-                var rs = ex;
-            }
-            return res;
+            return DomainManager.Query();
         }
 
         public SingleResult<FoodDTO> GetFood(string id)
@@ -43,22 +34,12 @@ namespace MobilebACKEND.Controllers
 
         public async Task<FoodDTO> PatchFood(string id, Delta<FoodDTO> patch)
         {
-            //var res = patch.GetEntity();
-           // var fieldName = patch.GetDynamicMemberNames();
             return await DomainManager.UpdateAsync(id, patch);
         }
 
         public async Task<IHttpActionResult> PostFood([FromBody]FoodDTO item)
         {
-            FoodDTO current = null;
-            try
-            {
-                current = await DomainManager.InsertAsync(item);
-            }
-            catch (Exception ex)
-            {
-                var e = ex;
-            }
+            FoodDTO current = await DomainManager.InsertAsync(item);
 
             return CreatedAtRoute("Tables", new { id = current.Id }, current);
         }

@@ -59,6 +59,7 @@ namespace MobilebACKEND.DAL
         public async override Task<bool> DeleteAsync(string id)
         {
             Food foodToDelete = this.Context.Set<Food>().Where(f => f.Id == id).FirstOrDefault();
+
             if (foodToDelete != null)
             {
                 this.Context.Entry(foodToDelete).State = EntityState.Detached;
@@ -83,7 +84,9 @@ namespace MobilebACKEND.DAL
             Food existingFood = null;
             try
             {
-                existingFood = this.Context.Set<Food>().Include(f => f.Description).Where(f => f.Id == id).FirstOrDefault();
+                existingFood = this.Context.Set<Food>().Include(f => f.Description)
+                    .Where(f => f.Id == id).FirstOrDefault();
+
                 if (existingFood == null)
                 {
                     throw new HttpResponseException(this.Request.CreateNotFoundResponse());
