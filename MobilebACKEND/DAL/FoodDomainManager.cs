@@ -58,12 +58,15 @@ namespace MobilebACKEND.DAL
 
         public async override Task<bool> DeleteAsync(string id)
         {
-            Food foodToDelete = this.Context.Set<Food>().Where(f => f.Id == id).FirstOrDefault();
+            Food foodToDelete = this.Context.Set<Food>().Where(f => f.Id == id).Include(f=>f.Description).FirstOrDefault();
 
             if (foodToDelete != null)
             {
-                this.Context.Entry(foodToDelete).State = EntityState.Detached;
+                this.Context.Entry(foodToDelete.Description).State = EntityState.Deleted;
+                this.Context.Entry(foodToDelete).State = EntityState.Deleted;
+
                 await this.SubmitChangesAsync();
+
                 return true;
             }
 

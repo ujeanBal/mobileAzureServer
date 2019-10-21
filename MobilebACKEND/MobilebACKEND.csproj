@@ -21,7 +21,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <TargetFrameworkProfile />
     <Use64BitIISExpress />
     <IISExpressSSLPort />
@@ -349,6 +349,10 @@
     <Compile Include="Migrations\201910210808009_ChangeAllTypesToLong.Designer.cs">
       <DependentUpon>201910210808009_ChangeAllTypesToLong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910211036131_AddCasCadeOnDelete.cs" />
+    <Compile Include="Migrations\201910211036131_AddCasCadeOnDelete.Designer.cs">
+      <DependentUpon>201910211036131_AddCasCadeOnDelete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\PFC.cs" />
     <Compile Include="Migrations\201910111142384_Initial.cs" />
     <Compile Include="Migrations\201910111142384_Initial.Designer.cs">
@@ -407,6 +411,9 @@
     <EmbeddedResource Include="Migrations\201910210808009_ChangeAllTypesToLong.resx">
       <DependentUpon>201910210808009_ChangeAllTypesToLong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910211036131_AddCasCadeOnDelete.resx">
+      <DependentUpon>201910211036131_AddCasCadeOnDelete.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -423,7 +430,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>56401</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:56401/</IISUrl>
+          <IISUrl>http://localhost:88</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -27,9 +27,10 @@ namespace MobilebACKEND.DAL
             modelBuilder.Entity<PFC>().HasKey(e => e.Id);
             modelBuilder.Entity<PFC>()
                 .HasRequired(e => e.Owner)
-                .WithRequiredDependent(e => e.Description);
-                modelBuilder.Entity<Food>().ToTable("Food");
-                modelBuilder.Entity<PFC>().ToTable("Pfc");
+                .WithRequiredDependent(e => e.Description)
+                .WillCascadeOnDelete(true);
+            modelBuilder.Entity<Food>().ToTable("Food");
+            modelBuilder.Entity<PFC>().ToTable("Pfc");
         }
     }
 }

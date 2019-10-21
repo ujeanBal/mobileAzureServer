@@ -51,7 +51,7 @@ namespace MobilebACKEND.Controllers
 
         public Task DeleteFood(string id)
         {
-            return DeleteAsync(id);
+            return DomainManager.DeleteAsync(id);
         }
     }
 }
