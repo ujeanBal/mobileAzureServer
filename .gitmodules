@@ -1,0 +1,3 @@
+[submodule "mobileAzureClient"]
+	path = mobileAzureClient
+	url = https://github.com/ujeanBal/mobileAzureClient
